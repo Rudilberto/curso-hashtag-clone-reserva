@@ -1,0 +1,30 @@
+{% extends 'base.html' %} {% load static %} {% block body%}
+
+<main class="principal">
+    <section class="conta">
+        <div class="conta__container" style="align-items: center;">
+            <div class="checkout__titulos">
+                <p class="checkout__titulo" >Gerenciar Loja</p>
+            </div>
+        </div>
+        <div class="conta__container">
+            <div class="checkout__titulos">
+                <p class="checkout__titulo">Indicadores</p>
+            </div>
+                <P>faturamento: {{ faturamento }}</P>
+                <P>Produtos vendidos: {{ produtos_vendidos }}</P>
+                <P>Total pedidos: {{ quantidade_pedidos }}</P>      
+        </div>
+        <div class="conta__container">
+            <div class="checkout__titulos">
+                <p class="checkout__titulo">Exportar relatorios</p>
+            </div>
+        <a href="{% url 'exportar_relatorio' 'pedido' %}">Exportar pedidos</a>
+        <a href="{% url 'exportar_relatorio' 'cliente' %}">Exportar cliente</a>
+        <a href="{% url 'exportar_relatorio' 'endereco' %}">Exportar enderecos</a>
+      </div>
+    </section>
+        
+</main>
+
+{% endblock%}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %} {% load static %} {% block body%}
+
+<main class="principal">
+    <section class="conta">
+      
+        <div class="conta__container">
+            <div class="checkout__titulos">
+                <p class="checkout__titulo">Crie Sua Conta</p>
+            </div>
+            
+            {% if erro == 'preenchimento' %}
+                <p style="color: red;">Por favor, preencha todos os dados!</p>
+            {% elif erro == 'senhas_diferentes' %}
+                <p style="color: red;">Senhas não conferem!</p>
+            {% elif erro == 'email_invalido' %}
+                <p style="color: red;">E-mail inválido!</p>
+            {% elif erro == 'usuario_existente' %}
+                <p style="color: red;">Usuario já cadastrado! <a href="{% url 'fazer_login' %}">Fazer login?</a></p>
+            {% endif %}
+        
+        <form
+          class="conta__form"
+          action="{% url 'criar_conta' %}"
+          method="post"
+        >
+        {% csrf_token %}
+          <div class="conta__item conta__item--email">
+            <label for="email">E-mail</label>
+            <input name="email" type="email" placeholder="E-mail" />
+          </div>
+
+          <div class="conta__item conta__item--email">
+            <label for="senha">Senha</label>
+            <input name="senha" type="password" placeholder="Senha" />
+          </div>
+          
+          <div class="conta__item conta__item--email">
+            <label for="confirmacao_senha">Confirme sua senha</label>
+            <input name="confirmacao_senha" type="password" placeholder="Confirme sua senha" />
+          </div>
+
+          <button class="subtotal__botao" type="submit">
+            Criar Conta
+          </button>
+        </form>
+
+        <a href="{% url 'fazer_login' %}">Já tem uma conta?</a>
+      </div>
+
+    </section>
+</main>
+{% endblock%}
